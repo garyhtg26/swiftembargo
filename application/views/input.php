@@ -258,6 +258,7 @@ $date = date('d-M-Y h:i:s', time());
        
        
         <input type="hidden" value="<?php echo (isset($date)) ? $date: ''?>" name="CREATED_TIMESTAMP" class="form-control" id="" placeholder="">
+        <input type="hidden" value="" name="USER_ID" class="form-control" id="username" placeholder="">
         
         <div class="form-group row">
             <div class="col text-center">

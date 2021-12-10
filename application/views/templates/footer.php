@@ -30,14 +30,15 @@
  {
     if (element.checked) {
       $('#noid').prop('readonly', true);
-      var rightNow = new Date();
-      var res = rightNow.toISOString().slice(2,10).replace(/-/g,"");
-      var id = 'TS' + res + (Math.floor(Math.random() * 100000000) + 10000).toString()
       document.getElementById("noid").value = '';
+      // document.getElementById("noid").value = '<?php echo $generate ?>';
+      // document.getElementById("noid").style.color = '#4a535d00';
     }
     else if (!element.checked){
       $('#noid').removeProp('readonly');
       $('#noid').prop('readonly', false);
+      // document.getElementById("noid").value = '';
+      // document.getElementById("noid").style.color = '#495057';
      
 
     }
@@ -47,7 +48,7 @@
       $(document).ready(function() {
           $('#example').DataTable(
             {
-                "lengthMenu": [[25, 50, 100, -1], [25, 50,100, "All"]],
+                "lengthMenu": [[50, 100,150,200, -1], [50,100,150,200, "All"]],
                 "ordering": true,
                 "order": [[ 0, "desc" ]],
                 

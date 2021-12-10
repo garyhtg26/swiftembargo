@@ -141,6 +141,6 @@ px
   white-space: nowrap;
   justify-content: flex-end;
 }
-.dataTables_filter {
+/* .dataTables_filter {
   display: none;
-  }
+  } */

@@ -85,6 +85,7 @@ class PostModel extends CI_Model
                 'ISSUER_OF_HEALTH_CERTIFICATE'=> $this->input->post('ISSUER_OF_HEALTH_CERTIFICATE'),
                 'MANUFACTURER'=> $this->input->post('MANUFACTURER'),
                 'OTHERS'=> $this->input->post('OTHERS'),
+                'USER_ID'=> $this->input->post('USER_ID'),
                 // 'XML_SOAP_REQ'=> $this->session->userdata('final'),
                 // 'XML_SOAP_RSP'=> $this->session->userdata('sesuatu'),
                 // 'STATUS'=> $this->session->userdata('status'),

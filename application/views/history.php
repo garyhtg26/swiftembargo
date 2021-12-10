@@ -8,7 +8,7 @@
                 <button onclick="window.print()" class="btn btn-sm btn-outline-secondary"><i class="fa fa-print mr-1"></i>Print</button>
                 
               </div>
-              <button class="btn btn-sm btn-outline-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <!-- <button class="btn btn-sm btn-outline-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span data-feather="filter"></span>
                 Filter History
               </button>
@@ -32,7 +32,7 @@
                       </div>
                       <button type="submit" class="btn btn-primary mx-sm-3 mb-2">Cari</button>
                   </form>
-              </div>
+              </div> -->
             </div>
           </div>
 
