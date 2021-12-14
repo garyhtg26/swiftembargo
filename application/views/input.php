@@ -1,15 +1,6 @@
 <?php 
 date_default_timezone_set('Asia/Jakarta');
-$date = date('d-M-Y h:i:s', time());
-
-    $currentDate = date('ymd');
-
-    $id = "00000012";
-
-     $currentDatee = "TS{$currentDate}{$id}" 
-
-  
-
+$date = date('d-M-Y h:i:sA', time());
  ?>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
@@ -255,11 +246,8 @@ $date = date('d-M-Y h:i:s', time());
             <input type="text" name="OTHERS" class="form-control" id="" placeholder="">
             </div>
         </div>
-       
-       
         <input type="hidden" value="<?php echo (isset($date)) ? $date: ''?>" name="CREATED_TIMESTAMP" class="form-control" id="" placeholder="">
         <input type="hidden" value="" name="USER_ID" class="form-control" id="username" placeholder="">
-        
         <div class="form-group row">
             <div class="col text-center">
             <button type="submit" class="btn btn-primary btn-lg">Submit</button>

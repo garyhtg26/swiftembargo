@@ -4,6 +4,5 @@
     "ssl-required": "external",
     "resource": "test-swiftembargo",
     "public-client": true,
-    "confidential-port": 0,
-    "url": "http://localhost:8080/auth/"
+    "confidential-port": 0
   }

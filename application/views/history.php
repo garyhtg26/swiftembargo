@@ -63,9 +63,9 @@
               <tr>
                 <td><?php echo $post->REQUEST_ID ?></td>
                 <td><?php echo $post->STATUS ?></td>
-                <td>Idx Partners</td>
+                <td><?php echo $post->USER_ID ?></td>
                 <td><?php
-                        $timestamp = strtotime(substr($post->CREATED_TIMESTAMP,1,8));
+                        $timestamp = strtotime(substr($post->CREATED_TIMESTAMP,0,9));
                         $new_date = date("d M Y", $timestamp);
                         echo $new_date;
                    

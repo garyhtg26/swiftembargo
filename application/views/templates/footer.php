@@ -31,14 +31,12 @@
     if (element.checked) {
       $('#noid').prop('readonly', true);
       document.getElementById("noid").value = '';
-      // document.getElementById("noid").value = '<?php echo $generate ?>';
-      // document.getElementById("noid").style.color = '#4a535d00';
+
     }
     else if (!element.checked){
       $('#noid').removeProp('readonly');
       $('#noid').prop('readonly', false);
-      // document.getElementById("noid").value = '';
-      // document.getElementById("noid").style.color = '#495057';
+
      
 
     }
