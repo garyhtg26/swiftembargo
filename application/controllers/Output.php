@@ -15,7 +15,9 @@ class Output extends CI_Controller
     {
         $postModel = $this->PostModel;
         $ids = $this->uri->segment(2);
+        $idc = substr($postModel->getById($ids)->COUNTRY_OF_ORIGIN,4,2);
         $data["post"] = $postModel->getById($ids);
+        $data["country"] = $postModel->getCountryById($idc);
         if (!$data["post"]) show_404();
         
         $this->load->view('templates/header');

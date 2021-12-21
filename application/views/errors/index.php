@@ -37,37 +37,25 @@
         }
     </script>
 </head>
+<div class="page-wrap d-flex flex-row align-items-center mt-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 d-flex justify-content-center">
+              <img width="250px" src="<?php echo base_url();?>/assets/images/error.png">
+            </div>
+            <div class="col-md-12 text-center">
+                <span style="font-size: 4rem !important;font-weight:400;" class="display-1 d-block">Oops!</span>
+                
+                <?php if ($textError !='') { ?>
+                    <div class="mb-2 lead"><?php echo $textError ?></div>
+                <?php   } else { ?>
+                    <div class="mb-2 lead">Something went wrong</div>
+                <?php    }
+                ?>
 
-  <body  onload="initKeycloak()" >
-    <nav class="navbar navbar-dark fixed-top bg-darker flex-md-nowrap p-0 shadow">
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Questionnaire Trade Screening</a>
-      <!-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> -->
-      <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap">
-          <a id="logout" class="nav-link" href="#">Sign out</a> 
-        </li> 
-      </ul>
-    </nav>
-      
-    <div class="container-fluid">
-      <div class="row header">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-          <div class="sidebar-sticky">
-            <ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link <?php echo $this->uri->segment(1) == '' ? 'active': '' ?>" href="<?= base_url(''); ?> ">
-                  <span data-feather="file"></span>
-                  Trade Screening<span class="sr-only">(current)</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link <?php echo $this->uri->segment(1) == 'History' ? 'active': '' ?>" href="<?= base_url('History'); ?> ">
-                  <span data-feather="file-text"></span>
-                  History
-                </a>
-              </li>
-             
-            </ul>
-          </div>
-        </nav>
-        
+
+                <a href="<?php echo base_url();?>" class="btn btn-link">Please Try Again</a>
+            </div>
+        </div>
+    </div>
+</div>

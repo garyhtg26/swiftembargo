@@ -16,14 +16,46 @@ class Process extends CI_Controller
         $postModel = $this->PostModel;
         $idgenerate = $postModel->generateId();
         $reqid= ($this->input->post('REQUEST_ID')!='') ? $this->input->post('REQUEST_ID') : $idgenerate;
+        $postModel->bookid($reqid);
         $validation = $this->form_validation;
         $validation->set_rules($postModel->rules());
+        $ISSUING_BANK_HIT= 'N';
+        $ADVISING_BANK_HIT= 'N';
+        $APPLICANT_HIT= 'N';
+        $BENEFICIARY_HIT= 'N';
+        $PORT_OF_LOADING_HIT= 'N';
+        $PORT_OF_DISCHARGE_HIT= 'N';
+        $PLACE_OF_TAKING_IN_CHARGE_HIT= 'N';
+        $PLACE_OF_DESTINATION_HIT= 'N';
+        $DESCRIPTION_OF_GOOODS_HIT= 'N';
+        $COUNTRY_OF_ORIGIN_HIT= 'N';
+        $SHIPPER_HIT= 'N';
+        $NOTIFY_PARTY_HIT= 'N';
+        $CONSIGNEE_HIT= 'N';
+        $VESSEL_PRE_CARRIAGE_HIT= 'N';
+        $VESSEL_MAIN_VESSEL_HIT= 'N';
+        $CARRIER_HIT= 'N';
+        $MASTER_HIT= 'N';
+        $CHARTERER_HIT= 'N';
+        $OWNER_HIT= 'N';
+        $AGENT_OF_CARRIER_HIT= 'N';
+        $DELIVERY_AGENT_IN_TRANSPORT_DOC_HIT= 'N';
+        $SHIPPING_COMPANY_HIT= 'N';
+        $INSURANCE_COMPANY_HIT= 'N';
+        $AGENT_OF_INSURANCE_COMPANY_HIT= 'N';
+        $SETTLING_AGENT_OF_INSURANCE_HIT= 'N';
+        $ISSUER_OF_CERT_OF_ANALYSIS_HIT= 'N';
+        $ISSUER_OF_PACKING_LIST_HIT= 'N';
+        $ISSUER_OF_HEALTH_CERTIFICATE_HIT= 'N';
+        $MANUFACTURER_HIT= 'N';
+        $OTHERS_HIT= 'N';
 
 
 
-	$wsdl   = "http://10.230.83.97:8080/embargo/services/TransactionScoring03?wsdl"; 
-	$location = "http://10.230.83.97:8080/embargo/services/TransactionScoring03";
-	$action = "http://localhost:8090/mockCustomerManagementSoapHttpBinding/scoreTransaction";
+
+	$wsdl   = getenv('WSDL'); 
+	$location = getenv('LOCATION');
+	$action = getenv('ACTION');
 
 	// $client = new SoapClient($wsdl, array(
 	//     'soap_version'  => SOAP_1_1,
@@ -67,14 +99,14 @@ class Process extends CI_Controller
 
             $xml = simplexml_load_string($string);
             $requestIds = $xml->xpath('//requestId');
-            foreach ($requestIds as $requestId) $requestId[0] = $this->input->post('REQUEST_ID');
+            foreach ($requestIds as $requestId) $requestId[0] = $reqid;
             $textDatas = $xml->xpath('//textData');
             foreach ($textDatas as $textData) $textData[0] = $swift;
             
-            // $userNames = $xml->xpath('//userName');
-            // foreach ($userNames as $userName) $userName[0] = getenv('WS_USERNAME');
-            // $passs = $xml->xpath('//pass');
-            // foreach ($passs as $pass) $pass[0] = getenv('WS_PASSWORD');
+            $userNames = $xml->xpath('//userName');
+            foreach ($userNames as $userName) $userName[0] = getenv('WS_USERNAME');
+            $passs = $xml->xpath('//pass');
+            foreach ($passs as $pass) $pass[0] = getenv('WS_PASSWORD');
 
             $final = $xml->asXML();
 
@@ -83,22 +115,113 @@ class Process extends CI_Controller
         XML;
 	    $this->session->set_userdata('sesuatu', $sesuatu);
         $xmlRes = simplexml_load_string($sesuatu);
+
         $statuss = $xmlRes->xpath('//status');
         foreach ($statuss as $s){  
             $status = $s;
         } 
+        
         $hits = $xmlRes->xpath('//fieldId');
         foreach ($hits as $hit){  
-            $items[]=$hit;
-        } 
-        
+            //$items[]=$hit;
+            if ($hit=='51D'){
+                $ISSUING_BANK_HIT= 'Y';
+            }
+            if ($hit=='57D'){
+                $ADVISING_BANK_HIT= 'Y';
+            }
+            if ($hit==50){
+                $APPLICANT_HIT= 'Y';
+            }
+            if ($hit==59){
+                $BENEFICIARY_HIT= 'Y';
+            }
+            if ($hit=='44E'){
+                $PORT_OF_LOADING_HIT= 'Y';
+            }
+            if ($hit=='44F'){
+                $PORT_OF_DISCHARGE_HIT= 'Y';
+            }
+            if ($hit=='44A'){
+                $PLACE_OF_TAKING_IN_CHARGE_HIT= 'Y';
+            }
+            if ($hit=='44B'){
+                $PLACE_OF_DESTINATION_HIT= 'Y';
+            }
+            if ($hit=='45A'){
+                $DESCRIPTION_OF_GOOODS_HIT= 'Y';
+            }
+            if ($hit=='53A'){
+                $COUNTRY_OF_ORIGIN_HIT= 'Y';
+            }
+            if ($hit==60){
+                $SHIPPER_HIT= 'Y';
+            }
+            if ($hit==61){
+                $NOTIFY_PARTY_HIT= 'Y';
+            }
+            if ($hit==62){
+                $CONSIGNEE_HIT= 'Y';
+            }
+            if ($hit==70){
+                $VESSEL_PRE_CARRIAGE_HIT= 'Y';
+            }
+            if ($hit==71){
+                $VESSEL_MAIN_VESSEL_HIT= 'Y';
+            }
+            if ($hit==72){
+                $CARRIER_HIT= 'Y';
+            }
+            if ($hit==73){
+                $MASTER_HIT= 'Y';
+            }
+            if ($hit==74){
+                $CHARTERER_HIT= 'Y';
+            }
+            if ($hit==75){
+                $OWNER_HIT= 'Y';
+            }
+            if ($hit==76){
+                $AGENT_OF_CARRIER_HIT= 'Y';
+            }
+            if ($hit==80){
+                $DELIVERY_AGENT_IN_TRANSPORT_DOC_HIT= 'Y';
+            }
+            if ($hit==81){
+                $SHIPPING_COMPANY_HIT= 'Y';
+            }
+            if ($hit==82){
+                $INSURANCE_COMPANY_HIT= 'Y';
+            }
+            if ($hit==83){
+                $AGENT_OF_INSURANCE_COMPANY_HIT= 'Y';
+            }
+            if ($hit==84){
+                $SETTLING_AGENT_OF_INSURANCE_HIT= 'Y';
+            }
+            if ($hit==85){
+                $ISSUER_OF_CERT_OF_ANALYSIS_HIT= 'Y';
+            }
+            if ($hit==86){
+                $ISSUER_OF_PACKING_LIST_HIT= 'Y';
+            }
+            if ($hit==87){
+                $ISSUER_OF_HEALTH_CERTIFICATE_HIT= 'Y';
+            }
+            if ($hit==88){
+                $MANUFACTURER_HIT= 'Y';
+            }
+            if ($hit==90){
+                $OTHERS_HIT='Y';
+            } 
+        }
         // } catch (SoapFault $e) {
         //     $this->session->set_userdata('error', $e);
         // }
 
 
         $data = array(
-            'REQUEST_ID' => $reqid,
+            //'REQUEST_ID' => $reqid,
             'ISSUING_BANK' => $this->input->post('ISSUING_BANK'),
             'ADVISING_BANK' => $this->input->post('ADVISING_BANK'),
             'APPLICANT' => $this->input->post('APPLICANT'),
@@ -132,6 +255,36 @@ class Process extends CI_Controller
             'USER_ID'=> $this->input->post('USER_ID'),
             'STATUS'=> $status,
             'CREATED_TIMESTAMP'=> $this->input->post('CREATED_TIMESTAMP'),
+            'ISSUING_BANK_HIT'=> $ISSUING_BANK_HIT ,
+            'ADVISING_BANK_HIT'=> $ADVISING_BANK_HIT ,
+            'APPLICANT_HIT'=> $APPLICANT_HIT ,
+            'BENEFICIARY_HIT'=> $BENEFICIARY_HIT ,
+            'PORT_OF_LOADING_HIT'=> $PORT_OF_LOADING_HIT ,
+            'PORT_OF_DISCHARGE_HIT'=> $PORT_OF_DISCHARGE_HIT ,
+            'PLACE_OF_TAKING_IN_CHARGE_HIT'=> $PLACE_OF_TAKING_IN_CHARGE_HIT ,
+            'PLACE_OF_DESTINATION_HIT'=> $PLACE_OF_DESTINATION_HIT ,
+            'DESCRIPTION_OF_GOOODS_HIT'=> $DESCRIPTION_OF_GOOODS_HIT ,
+            'COUNTRY_OF_ORIGIN_HIT'=> $COUNTRY_OF_ORIGIN_HIT ,
+            'SHIPPER_HIT'=> $SHIPPER_HIT ,
+            'NOTIFY_PARTY_HIT'=> $NOTIFY_PARTY_HIT ,
+            'CONSIGNEE_HIT'=> $CONSIGNEE_HIT ,
+            'VESSEL_PRE_CARRIAGE_HIT'=> $VESSEL_PRE_CARRIAGE_HIT ,
+            'VESSEL_MAIN_VESSEL_HIT'=> $VESSEL_MAIN_VESSEL_HIT ,
+            'CARRIER_HIT'=> $CARRIER_HIT ,
+            'MASTER_HIT'=> $MASTER_HIT ,
+            'CHARTERER_HIT'=> $CHARTERER_HIT ,
+            'OWNER_HIT'=> $OWNER_HIT ,
+            'AGENT_OF_CARRIER_HIT'=> $AGENT_OF_CARRIER_HIT ,
+            'DELIVERY_AGENT_IN_TRANSPORT_DOC_HIT'=> $DELIVERY_AGENT_IN_TRANSPORT_DOC_HIT ,
+            'SHIPPING_COMPANY_HIT'=> $SHIPPING_COMPANY_HIT ,
+            'INSURANCE_COMPANY_HIT'=> $INSURANCE_COMPANY_HIT ,
+            'AGENT_OF_INSURANCE_COMPANY_HIT'=> $AGENT_OF_INSURANCE_COMPANY_HIT ,
+            'SETTLING_AGENT_OF_INSURANCE_HIT'=> $SETTLING_AGENT_OF_INSURANCE_HIT ,
+            'ISSUER_OF_CERT_OF_ANALYSIS_HIT'=> $ISSUER_OF_CERT_OF_ANALYSIS_HIT ,
+            'ISSUER_OF_PACKING_LIST_HIT'=> $ISSUER_OF_PACKING_LIST_HIT ,
+            'ISSUER_OF_HEALTH_CERTIFICATE_HIT'=> $ISSUER_OF_HEALTH_CERTIFICATE_HIT ,
+            'MANUFACTURER_HIT'=> $MANUFACTURER_HIT ,
+            'OTHERS_HIT'=> $OTHERS_HIT 
             );
 
 
@@ -143,10 +296,23 @@ class Process extends CI_Controller
         } else {
             
         }
-		$postModel->save($data);
-        $this->session->set_flashdata('success', 'Berhasil disubmit');
-        $postModel->updatehit($reqid,$items);
-        return redirect('output/'.$reqid);
+        $errors = $xmlRes->xpath('//returnValue');
+        foreach ($errors as $e){  
+            $err = $e;
+        } 
+         $errorText = $xmlRes->xpath('//errorText');
+        foreach ($errorText as $et){  
+            $textError = $et;
+        } 
+        if ($err=='1'){
+            $postModel->save($data,$reqid);
+            $this->session->set_flashdata('success', 'Berhasil disubmit');
+            return redirect('output/'.$reqid);
+        } else{
+            $dataa["textError"] = $textError;
+            $this->load->view("errors/index",$dataa);
+        }
+		
         
     }
 

@@ -75,12 +75,11 @@ $query_builder = TRUE;
 
 $db['default'] = array(
     'dsn'   => '',
-    'hostname' => 'PCIDX-189:1521/ORACL', //hostname:db_port/service_name
-    //'hostname' => 'localhost:1521/orcl',
-    'username' => 'IDX_STG_EMBARGO', 
-    'password' => 'siron', 
-    'database' => 'PANDAWA',
-    'dbdriver' => 'oci8',
+    'hostname' => getenv('DB_HOST'),
+    'username' => getenv('DB_USERNAME'), 
+    'password' => getenv('DB_PASSWORD'), 
+    'database' => getenv('DB_DATABASE'),
+    'dbdriver' => getenv('DB_CONNECTION'),
     'dbprefix' => '',
     'pconnect' => FALSE,
     'db_debug' => (ENVIRONMENT !== 'production'),

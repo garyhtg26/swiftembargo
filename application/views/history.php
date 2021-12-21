@@ -6,38 +6,12 @@
             <div class="btn-toolbar mb-2 mb-md-0">
               <div class="btn-group mr-2">
                 <button onclick="window.print()" class="btn btn-sm btn-outline-secondary"><i class="fa fa-print mr-1"></i>Print</button>
-                
               </div>
-              <!-- <button class="btn btn-sm btn-outline-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span data-feather="filter"></span>
-                Filter History
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <form >
-                      <div class="form-group mx-sm-3 mb-2">
-                        <label for="inputPassword2" class="form-label mr-3">By ID</label>
-                        <input type="text" class="form-control" id="byid" placeholder="">
-                      </div>
-                      <div class="form-group mx-sm-3 mb-2">
-                        <label for="inputPassword2" class="form-label mr-3">By Result</label>
-                        <input type="text" class="form-control" id="byresult" placeholder="">
-                      </div>
-                      <div class="form-group mx-sm-3 mb-2">
-                        <label for="inputPassword2" class="form-label mr-3">By User</label>
-                        <input type="text" class="form-control" id="inputPassword2" placeholder="">
-                      </div>
-                      <div class="form-group mx-sm-3 mb-2">
-                        <label for="inputPassword2" class="form-label mr-3">By Date</label>
-                        <input type="text" class="form-control" id="inputPassword2" placeholder="">
-                      </div>
-                      <button type="submit" class="btn btn-primary mx-sm-3 mb-2">Cari</button>
-                  </form>
-              </div> -->
             </div>
           </div>
 
 
-          <div class="table-responsive mb-4">
+          <div id="section-to-print" class="table-responsive mb-4">
           <table id="example" class="table table-striped table-bordered display" style="width:100%">
             <thead>
               <tr>

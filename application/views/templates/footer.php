@@ -54,5 +54,39 @@
           );
       } );
     </script>
+    <script>
+var spinner = $('#progressbar');
+var body = $('body');
+$('#submit_button').on('click',function(e){
+     e.preventDefault();
+
+
+     spinner.show();
+     $('#inputmain').hide();
+     //Add a code to show your loader.
+     setTimeout(
+  function() 
+  {
+    $('form').submit();
+  }, 1000);
+});
+
+</script>
+<script type="text/javascript">
+ 
+function removeelements(){
+  $(".header").removeClass();
+  $("main").removeClass("col-md-9 ml-sm-auto col-lg-10");
+  $(".col-form-label").css("margin-left", "10px");
+}
+ 
+function revertback(){
+setTimeout("window.location.reload()",10)
+}
+ 
+window.onbeforeprint=removeelements
+window.onafterprint=revertback
+ 
+</script>
   </body>
 </html>
